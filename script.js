@@ -76,3 +76,22 @@ function logEvent(data) {
 
 // Fetch data every second
 setInterval(fetchData, 1000);
+function renderDevices(data) {
+    const container = document.getElementById("pzem-container");
+    container.innerHTML = ""; // reset
+
+    Object.keys(data).forEach(device => {
+        const d = data[device];
+
+        container.innerHTML += `
+            <div class="device-card">
+                <h3>${device.toUpperCase()}</h3>
+                <p><strong>Voltage:</strong> ${d.voltage} V</p>
+                <p><strong>Current:</strong> ${d.current} A</p>
+                <p><strong>Power:</strong> ${d.power} W</p>
+                <canvas id="chart_${device}" height="100"></canvas>
+            </div>
+        `;
+    });
+}
+
