@@ -94,4 +94,54 @@ function renderDevices(data) {
         `;
     });
 }
+const deviceCharts = {};
+
+function updateDeviceCharts(data) {
+    Object.keys(data).forEach(device => {
+        const ctx = document.getElementById("chart_" + device);
+
+        if (!deviceCharts[device]) {
+            deviceCharts[device] = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: "Power (W)",
+                        data: [],
+                        borderWidth: 2
+                    }]
+                }
+            });
+        }
+
+        const chart = deviceCharts[device];
+
+        chart.data.labels.push("");
+        chart.data.datasets[0].data.push(data[device].power);
+
+        if (chart.data.labels.length > 20) {
+            chart.data.labels.shift();
+            chart.data.datasets[0].data.shift();
+        }
+
+        chart.update();
+    });
+}
+async function fetchData() {
+    try {
+        const response = await fetch(`${FIREBASE_URL}/data.json?t=${Date.now()}`);
+        const data = await response.json();
+
+        // Create widgets
+        renderDevices(data);
+
+        // Update graphs
+        updateDeviceCharts(data);
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+setInterval(fetchData, 1000);
 
