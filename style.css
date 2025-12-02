@@ -64,4 +64,22 @@ h1 { margin-bottom: 5px; }
     padding: 10px;
     border-radius: 8px;
     font-size: 14px;
+
+    .device-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.device-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.device-card h3 {
+  margin-bottom: 10px;
+}
 }
