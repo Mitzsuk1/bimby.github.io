@@ -1,6 +1,27 @@
-{
-    "voltage": 0,
-    "current": 0,
-    "power": 0,
-    "status": "normal"
-}
+String payload = "{";
+
+payload += "\"pzem1\":{";
+payload += "\"voltage\":" + String(v1) + ",";
+payload += "\"current\":" + String(c1) + ",";
+payload += "\"power\":" + String(p1);
+payload += "},";
+
+payload += "\"pzem2\":{";
+payload += "\"voltage\":" + String(v2) + ",";
+payload += "\"current\":" + String(c2) + ",";
+payload += "\"power\":" + String(p2);
+payload += "},";
+
+payload += "\"pzem3\":{";
+payload += "\"voltage\":" + String(v3) + ",";
+payload += "\"current\":" + String(c3) + ",";
+payload += "\"power\":" + String(p3);
+payload += "}";
+
+payload += "\"pzem3\":{";
+payload += "\"voltage\":" + String(v3) + ",";
+payload += "\"current\":" + String(c3) + ",";
+payload += "\"power\":" + String(p3);
+payload += "}";
+
+payload += "}";
